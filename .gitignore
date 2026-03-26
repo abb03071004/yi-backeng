@@ -5,8 +5,7 @@ target/
 !**/src/test/**/target/
 
 
-*.jks
-*.yml
+
 ### STS ###
 .apt_generated
 .classpath
