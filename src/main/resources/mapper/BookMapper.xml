@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yibackend.mapper.BookMapper">
+
+    <insert id="insertBatch" useGeneratedKeys="true" keyProperty="id">
+        insert into books (title, author, publisher, version, price, `condition`,trade_method, location,notes,status,create_time,update_time) VALUES
+        <foreach collection="booksList" item="book" separator=",">
+            (#{book.title},#{book.author},#{book.publisher},#{book.version}
+            ,#{book.price},#{book.condition},#{book.tradeMethod},#{book.location}
+            ,#{book.notes},#{book.status},#{book.createTime},#{book.updateTime})
+        </foreach>
+    </insert>
+
+</mapper>

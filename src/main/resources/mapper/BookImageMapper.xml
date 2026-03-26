@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yibackend.mapper.BookImageMapper">
+    <insert id="insertBatch">
+        insert into book_images (book_id,image_url,sort_order,create_time) VALUES
+        <foreach collection="imagesList" item="image" separator=",">
+            (#{image.bookId},#{image.imageUrl},#{image.sortOrder},#{image.createTime})
+        </foreach>
+    </insert>
+
+    <select id="findImagesById" resultType="java.lang.String" >
+        select image_url from book_images
+        <where>
+            <if test="id!=null">
+                book_id =#{id}
+            </if>
+        </where>
+        order by sort_order asc
+    </select>
+</mapper>
